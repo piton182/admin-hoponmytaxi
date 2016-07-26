@@ -111,7 +111,9 @@ export default class RideForm extends Component {
       const ride = this.model2ride(this.state.model, this.state.airports)
       Rides.update({_id: ride._id}, ride)
     } else if (this.props.mode === 'new') {
-      Rides.insert(this.model2ride(this.state.model, this.state.airports))
+      const ride = this.model2ride(this.state.model, this.state.airports)
+      ride.bkn_ref = 'R' + Math.floor(Math.random()*(100*1000));
+      Rides.insert(ride)
     } else {
       // uh?
     }
