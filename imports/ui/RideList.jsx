@@ -46,7 +46,7 @@ class RideList extends Component {
           {this.formatAirport(ride.to)}
         </td>
         <td style={{whiteSpace: "nowrap"}}>
-          {ride.coriders}
+          {ride.corider}
         </td>
         <td style={{whiteSpace: "nowrap"}}>
           { this.props.rideInEdit
