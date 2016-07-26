@@ -134,7 +134,7 @@ export default class RideForm extends Component {
       name: faker.name.findName(),
       phone: faker.phone.phoneNumberFormat(),
       datetime: {
-        unix: moment(faker.date.recent()).unix(),
+        unix: moment().unix() + (1 * 60 * 60) + Math.floor(Math.random() * (48 * 60 * 60)),
       },
       from: faker.address.streetAddress(),
       to: this.state.airports[Math.round(Math.random())],
