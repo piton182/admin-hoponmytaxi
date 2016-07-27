@@ -5,7 +5,7 @@ import { Session } from 'meteor/session';
 import RideForm from './RideForm.jsx';
 import RideList from './RideList.jsx';
 
-import { Airports } from '../api/airports.js';
+import { Airports } from '../../both/collections.js';
 
 class App extends Component {
   render() {

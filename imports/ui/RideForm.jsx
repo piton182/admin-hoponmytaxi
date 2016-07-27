@@ -11,7 +11,7 @@ import {
   FormControl,
   Button } from 'react-bootstrap';
 
-import { Rides } from '../api/rides.js';
+import { Rides } from '../../both/collections.js';
 
 export default class RideForm extends Component {
   constructor(props) {
@@ -109,11 +109,12 @@ export default class RideForm extends Component {
 
     if (this.props.mode === 'edit') {
       const ride = this.model2ride(this.state.model, this.state.airports)
-      Rides.update({_id: ride._id}, ride)
+      // Rides.update({_id: ride._id}, ride)
+      Meteor.call('rides.update', ride)
     } else if (this.props.mode === 'new') {
       const ride = this.model2ride(this.state.model, this.state.airports)
-      ride.bkn_ref = 'R' + Math.floor(Math.random()*(100*1000));
-      Rides.insert(ride)
+      // Rides.insert(ride)
+      Meteor.call('rides.create', ride);
     } else {
       // uh?
     }

@@ -1,2 +1,1 @@
-import '../imports/api/rides.js';
-import '../imports/api/airports.js';
+import { Rides, Airports } from'../both/collections.js';

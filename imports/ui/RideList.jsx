@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import { createContainer } from 'meteor/react-meteor-data';
 
-import { Rides } from '../api/rides.js';
+import { Rides } from '../../both/collections.js';
 
 class RideList extends Component {
   formatDate(datetime) {
@@ -22,8 +22,8 @@ class RideList extends Component {
   }
 
   handleDeleteRide(ride) {
-    Rides.remove({_id: ride._id});
-  }
+    //console.log({_id: ride._id})
+  Meteor.call('rides.delete', {_id: ride._id})}
 
   renderRides() {
     // console.log(this.props.rides);
