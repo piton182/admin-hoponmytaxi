@@ -424,18 +424,6 @@ class RideForm extends Component {
                 : <Button type="submit" bsSize="small">Submit</Button>}
             </Col>
           </FormGroup>
-          { this.props.mode === 'edit'
-            ? (
-              <div>
-                <Button type="submit" bsSize="small">Save</Button>
-                <a href="#" onClick={this.handleCancelEdit.bind(this)}>Cancel</a>
-              </div>
-              )
-            : <Button type="submit" bsSize="small">Submit</Button>}
-
-          { this.props.mode === 'new' 
-            ? <a href="#" onClick={this.handleFakeOne.bind(this)}>Fake one</a> 
-            : ''}
         </Form>
       </div>
     );
