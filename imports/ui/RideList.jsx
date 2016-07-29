@@ -40,7 +40,7 @@ class RideList extends Component {
           {this.formatDate(ride.datetime)}
         </td>
         <td style={{whiteSpace: "nowrap"}}>
-          {ride.from}
+          {ride.from.streetAddress}
         </td>
         <td style={{whiteSpace: "nowrap"}}>
           {this.formatAirport(ride.to)}
