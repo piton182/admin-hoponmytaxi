@@ -78,7 +78,7 @@ class RideForm extends Component {
       }
     }
     const model = {
-      bkn_ref: ride.bkn_ref,
+      bkn_ref: ride.bkn_ref || '',
       name: ride.name || '',
       phone: ride.phone || '',
       ...decomposeDatetime(ride.datetime),
@@ -180,6 +180,7 @@ class RideForm extends Component {
     Session.set('rideFormModel', null);
     Session.set('rideInEdit', null);
   }
+
 
   handleSubmit(event) {
     event.preventDefault();
@@ -423,6 +424,18 @@ class RideForm extends Component {
                 : <Button type="submit" bsSize="small">Submit</Button>}
             </Col>
           </FormGroup>
+          { this.props.mode === 'edit'
+            ? (
+              <div>
+                <Button type="submit" bsSize="small">Save</Button>
+                <a href="#" onClick={this.handleCancelEdit.bind(this)}>Cancel</a>
+              </div>
+              )
+            : <Button type="submit" bsSize="small">Submit</Button>}
+
+          { this.props.mode === 'new' 
+            ? <a href="#" onClick={this.handleFakeOne.bind(this)}>Fake one</a> 
+            : ''}
         </Form>
       </div>
     );

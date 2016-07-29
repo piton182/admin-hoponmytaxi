@@ -5,12 +5,13 @@ Meteor.methods(
   {
     'rides.create'(newRide) {
       // TODO: validate args
-
-      { // doc enrichment
-        // TODO: poor algorithm
-        newRide.bkn_ref = 'R' + Math.floor(Math.random()*(100*1000)); // TODO: it should generate at the server (as method?)
+      if(Meteor.isServer){
+        { // doc enrichment
+          // TODO: poor algorithm
+          newRide.bkn_ref = 'R' + Math.floor(Math.random()*(100*1000)); // TODO: it should generate at the server (as method?)
+          console.log(newRide.bkn_ref)
+        }
       }
-
       if (validateRide(newRide)) {
         Rides.insert(newRide);
       } else {
@@ -19,7 +20,6 @@ Meteor.methods(
     },
     'rides.delete'(rideId) {
       // TODO: validate ride
-
       Rides.remove(rideId);
     },
     'rides.update'(ride) {
