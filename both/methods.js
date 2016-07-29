@@ -9,7 +9,6 @@ Meteor.methods(
         { // doc enrichment
           // TODO: poor algorithm
           newRide.bkn_ref = 'R' + Math.floor(Math.random()*(100*1000)); // TODO: it should generate at the server (as method?)
-          console.log(newRide.bkn_ref)
         }
       }
       if (validateRide(newRide)) {
