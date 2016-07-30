@@ -15,7 +15,7 @@ class App extends Component {
         <table>
           <tbody>
             <tr>
-              <div style={{border: "5px solid yellow", margin: "0 0 0 24px"}}>
+              <div style={{border: "5px solid yellow"}}>
                 {/* {{> ride_form model=rideModel callbacks=rideCRUDCallbacks isEditingMode=isRideFormEditingMode }}*/}
                 <RideForm
                   ride={this.props.rideFormModel}
