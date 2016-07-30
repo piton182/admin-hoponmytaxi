@@ -21,7 +21,7 @@ class App extends Component {
                   ride={this.props.rideFormModel}
                   mode={this.props.rideInEdit ? 'edit' : 'new'}
                   airports={this.props.airports} />
-              </div>
+              </td>
               <td style={{width: "30px"}}></td>
               <td style={{border: "5px solid blue"}}>
                 {/* {{> ride_list callbacks=rideCRUDCallbacks }}*/}
