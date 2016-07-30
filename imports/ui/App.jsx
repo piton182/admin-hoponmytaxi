@@ -16,13 +16,12 @@ class App extends Component {
           <tbody>
             <tr>
               <td style={{border: "5px solid yellow"}}>
-              
                 {/* {{> ride_form model=rideModel callbacks=rideCRUDCallbacks isEditingMode=isRideFormEditingMode }}*/}
                 <RideForm
                   ride={this.props.rideFormModel}
                   mode={this.props.rideInEdit ? 'edit' : 'new'}
                   airports={this.props.airports} />
-              </td>
+              </div>
               <td style={{width: "30px"}}></td>
               <td style={{border: "5px solid blue"}}>
                 {/* {{> ride_list callbacks=rideCRUDCallbacks }}*/}
