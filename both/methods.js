@@ -12,8 +12,19 @@ Meteor.methods(
         }
       }
       if (validateRide(newRide)) {
-        Rides.insert(newRide);
-      } else {
+          // if(Rides.find().fetch().map((i) => i.bkn_ref === newRide.bkn_ref)){        //check bkn_ref before Ride.insert
+        Rides.insert(newRide,
+          (err, res) => {
+            if(err){
+              while(err.code===11000){                                                  //maybe another code of error?      
+                newRide.bkn_ref = 'R' + Math.floor(Math.random()*(100*1000))
+                Rides.insert(newRide)
+              }
+            }else{
+              //"sucess"
+            }
+          });
+      }else{
         throw new Meteor.Error("rides.create.invalidRide", "Invalid ride");
       }
     },
