@@ -2,43 +2,46 @@ import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Session } from 'meteor/session';
 
-import RideForm from './RideForm.jsx';
-import RideList from './RideList.jsx';
+import RideFormAndList from './RideFormAndList.jsx';
+import Page2 from './Page2.jsx';
+import Page3 from './Page3.jsx';
 
-import { Airports } from '../../both/collections.js';
 
-class App extends Component {
+export default class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      route: window.location.hash.substr(1)
+    }
+  }
+  componentDidMount() {
+    window.addEventListener('hashchange', () => {
+      this.setState({
+        route: window.location.hash.substr(1)
+      })
+    })
+  }
   render() {
+    let App
+        
+    switch (this.state.route) {
+      case '/#':      App = home; break;
+      case '/Page2':  App = Page2; break;
+      case '/Page3':  App = Page3; break;
+      default: App = RideFormAndList;
+    }
     // console.log('App.render')
     return (
       <div style={{border: "5px solid red"}}>
-        <table>
-          <tbody>
-            <tr>
-              <td style={{border: "5px solid yellow"}}>
-                {/* {{> ride_form model=rideModel callbacks=rideCRUDCallbacks isEditingMode=isRideFormEditingMode }}*/}
-                <RideForm
-                  ride={this.props.rideFormModel}
-                  mode={this.props.rideInEdit ? 'edit' : 'new'}
-                  airports={this.props.airports} />
-              </td>
-              <td style={{width: "30px"}}></td>
-              <td style={{border: "5px solid blue"}}>
-                {/* {{> ride_list callbacks=rideCRUDCallbacks }}*/}
-                <RideList />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <nav aria-label="Page navigation">
+        <ul className="pagination">
+            <li><a href='#/'>home</a></li>
+            <li><a href='#/Page2'>Page2</a></li>
+            <li><a href='#/Page3'>Page3</a></li>
+        </ul>
+      </nav>
+        <App />
       </div>
     );
   }
 }
-
-export default createContainer(() => {
-  return {
-    rideFormModel: Session.get('rideFormModel') || {},
-    rideInEdit: Session.get('rideInEdit') && Session.get('rideFormModel') || null,
-    airports: Airports.find().fetch(),
-  }
-}, App);
